@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <link type="text/css" rel="stylesheet" href="/decentpropmate_frontend/index.css" />
+    <title>DecentPropMate</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+      }
+
+      .title-container {
+        border: 2px solid #007bff;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-top: 0;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      form {
+        margin-bottom: 20px;
+        border: 2px solid purple;  /* Switched to purple for consistency */
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        text-align: left;
+        color: grey;  /* Added a grey text color */
+      }
+
+      input[type="radio"] {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button#reset {
+        background-color: #dc3545;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        margin: 10px 0; /* Add margin */
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #results {
+        margin-top: 20px;
+        font-size: 18px;
+        border: 2px solid purple;  /* Switched to purple for consistency */
+        padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        background-color: #f9f9f9;  /* Added a light background color */
+        color: grey;  /* Added a grey text color */
+      }
+      /* Tenant and Service Request Form Container */
+.tenant-service-form-container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+/* Specific Form Styling */
+.tenant-service-form {
+  background-color: #333; /* Dark Grey */
+  padding: 20px;
+  border-radius: 8px;
+  color: #FFF; /* White */
+  margin: 20px auto;
+}
+
+/* Specific Label Styling */
+.tenant-service-label {
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input fields */
+.tenant-service-input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #6200ea; /* Purple */
+  border-radius: 4px;
+}
+
+/* Checkbox */
+.tenant-service-checkbox {
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
+}
+
+/* Submit Button */
+.tenant-service-submit {
+  background-color: #6200ea; /* Purple */
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tenant-service-submit:hover {
+  background-color: #555;
+}
+/* Tenant Registration Section */
+.tenant-reg-form-container {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f2f2f2; /* Light gray background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tenant-reg-title {
+  color: #4a00e0; /* Purple */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tenant-reg-label,
+.tenant-reg-input,
+.tenant-reg-checkbox,
+.tenant-reg-submit {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tenant-reg-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333; /* Dark gray */
+}
+
+.tenant-reg-input {
+  padding: 10px;
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px;
+}
+
+.tenant-reg-checkbox {
+  width: auto; /* Override the width */
+}
+
+.tenant-reg-submit {
+  background-color: #4a00e0; /* Purple */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tenant-reg-submit:hover {
+  background-color: #3500d3; /* Darker purple on hover */
+}
+
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.logo-image {
+  width: 100px; /* You can adjust the width */
+  height: auto;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="title-container">
+        <h1>DecentPropMate - Manejo de Propiedades</h1>
+      </div><br>
+      <!--<div>
+        <button type="button" id="connect-button">Connect</button>
+      </div><br>-->
+      <div id="react-root"></div>
+
+      <h2 id="question">Proyectos para el 2024</h2>
+
+      <!-- Form where users vote -->
+      <div class="form-container">
+        <form id="radioForm">
+            <label>
+                <input type="radio" name="option" value="Modernizar el elevador"> Modernizar el elevador
+            </label><br>
+            <label>
+                <input type="radio" name="option" value="Ampliar el gimnasio"> Ampliar el gimnasio
+            </label><br>
+            <label>
+                <input type="radio" name="option" value="Modernizar el teatro"> Modernizar el teatro
+            </label><br>
+            <label>
+                <input type="radio" name="option" value="Modernizar el sistema de seguridad"> Modernizar el sistema de seguridad
+            </label><br>
+            <button type="submit">Votar</button>
+        </form>
+      </div>
+
+      <!-- Poll results appear here-->
+      <h2 id="results-title">Resultados</h2>
+      <div id="results"></div>
+    </div>
+    <div>
+    <button id="reset">Borrar</button>
+    </div>
+    <div id="service-request-section" class="tenant-service-form-container">
+      <h2>Pedir Servicios</h2>
+      <form id="service-request-form" class="tenant-service-form">
+        <label for="tenantName" class="tenant-service-label">Tenant Name:</label>
+        <input type="text" id="tenantName" name="tenantName" class="tenant-service-input"><br><br>
+        
+        <label for="aptNumber" class="tenant-service-label">Apartment Number:</label>
+        <input type="number" id="aptNumber" name="aptNumber" class="tenant-service-input"><br><br>
+        
+        <label for="serviceType" class="tenant-service-label">Service Type:</label>
+        <input type="text" id="serviceType" name="serviceType" class="tenant-service-input"><br><br>
+    
+        <label for="cost" class="tenant-service-label">Cost:</label>
+        <input type="number" id="cost" name="cost" class="tenant-service-input"><br><br>
+    
+        <input type="submit" value="Submit" class="tenant-service-submit">
+      </form>
+      <h3>Total Cost: <span id="total-cost"></span></h3>
+    </div>
+    
+
+    <div id="tenant-registration-section" class="tenant-service-form-container">
+      <h2 class="tenant-service-title">Registro de Inquilinos</h2>
+      <form id="tenantForm" class="tenant-service-form">
+        <label for="fullName" class="tenant-service-label">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required class="tenant-service-input">
+        
+        <label for="aptNumber" class="tenant-service-label">Apartment Number:</label>
+        <input type="number" id="aptNumber" name="aptNumber" required class="tenant-service-input">
+      
+        <label for="numPeople" class="tenant-service-label">Number of People:</label>
+        <input type="number" id="numPeople" name="numPeople" required class="tenant-service-input">
+      
+        <label for="hasPets" class="tenant-service-label">Do you have pets?</label>
+        <input type="checkbox" id="hasPets" name="hasPets" class="tenant-service-checkbox">
+        
+        <input type="submit" value="Register" class="tenant-service-submit">
+      </form>
+    </div>
+    
+    <div class="logo-container">
+      <img src="decentpropmatelogo.png" alt="Decent Propmate Logo" class="logo-image">
+    </div>
+    
+    <div id="root"></div>
+      <script type="module">
+        /**
+         * @dfinity/agent requires this. Can be removed once it's fixed
+         */
+        import { Buffer } from "buffer"
+
+        window.global = window
+        window.Buffer = Buffer
+      </script>
+      <script type="module" src="/decentpropmate_frontend/main.jsx"></script>
+    
+
+</body>
+</html>

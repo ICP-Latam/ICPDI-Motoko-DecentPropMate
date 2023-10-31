@@ -1,0 +1,40 @@
+{
+  "canisters": {
+    "decentpropmate_backend": {
+      "main": "src/decentpropmate_backend/main.mo",
+      "type": "motoko"
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      }
+    },
+
+    "decentpropmate_frontend": {
+      "dependencies": [
+        "decentpropmate_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/decentpropmate_frontend/src/index.html"
+      },
+      "source": [
+        "src/decentpropmate_frontend/assets",
+        "dist/decentpropmate_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
